@@ -11,7 +11,8 @@ import SwiftUI
 struct DeliveryAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
+                .environmentObject(Store())
         }
     }
 }

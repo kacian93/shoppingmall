@@ -1,0 +1,59 @@
+
+[
+    {
+        "name": "お水 * 24",
+        "imageName":"water",
+        "price":1300,
+        "description":"お水",
+        "isFavorite": false
+    },
+    
+    {
+        "name": "モバイルバッテリー",
+        "imageName" :"mobile",
+        "price":2000,
+        "description": "急速の充電可能！バッテリーばないとき、使ってみて！",
+        "isFavorite": false
+    },
+    
+    {
+        "name": "液体トイレ洗浄剤 * 4",
+        "imageName":"washable",
+        "price": 727,
+        "description": "トイレをきれいに",
+        "isFavorite": false
+    },
+    
+    {
+        "name": "キャップセルコーヒーセット",
+        "imageName":"coffee",
+        "price":2200,
+        "description": "簡単にコーヒーを飲みましょう",
+        "isFavorite": false
+    },
+    
+    {
+        "name": "ペンシル",
+        "imageName" :"pencil",
+        "price":2800,
+        "description": "描きやすい！絵描きに得意があるペンシル",
+        "isFavorite": false
+    },
+    
+    {
+        "name": "扇風機",
+        "imageName":"wind",
+        "price":2100,
+        "description": "優しい風でこの夏に負けない！",
+        "isFavorite": false
+    },
+    
+    {
+        "name": "消しゴム",
+        "imageName" :"rubber",
+        "price":700,
+        "description": "すぐきれいに！絵描きのうちに消せれる消しゴム",
+        "isFavorite": false
+    }
+    
+]
