@@ -11,15 +11,23 @@ struct ProductDetailView: View {
     @EnvironmentObject var store : Store
     @State private var quantity : Int = 1
     @State private var showingAlert : Bool = false
+    @State private var showingPopup : Bool = false
     
     var product : ProductModel
     
     var body: some View {
-        VStack(spacing:0){
-        productImage
-        orderView
-        }.edgesIgnoringSafeArea(.top)
+        ZStack{
+            VStack(alignment: .center,spacing:0){
+                productImage
+                orderView
+                
+            }
+            .edgesIgnoringSafeArea(.top)
             .alert(isPresented: $showingAlert, content: {confirmAlert})
+            if showingPopup{
+                PopupView(isPresent: $showingPopup,product: product, quantity: quantity)
+            }
+        }
     }
     
     //MARK: --viewを分けて変数で
@@ -60,12 +68,13 @@ struct ProductDetailView: View {
             self.showingAlert = true
         }label: {
             Capsule()
-                .fill(Color(hue: 1.0, saturation: 0.244, brightness: 0.996))
+                .fill(Color(hue: 1.0, saturation: 1, brightness: 1))
                 .frame(maxWidth:.infinity, minHeight: 30, maxHeight: 50)
                 .overlay(Text("注文する")
                     .font(.title)
                     .fontWeight(.medium)
                     .foregroundColor(.white)
+                    .buttonStyle(ShrinkButtonStyle())
                 ).padding(.vertical,8)
             
         }
@@ -73,7 +82,7 @@ struct ProductDetailView: View {
     }
     var productImage : some View{
         GeometryReader{geo in
-        Image(product.imageName).resizable().scaledToFill()
+            Image(product.imageName).resizable().scaledToFill()
         }
     }
     
@@ -84,17 +93,18 @@ struct ProductDetailView: View {
                 .font(.largeTitle)
                 .fontWeight(.medium)
                 .foregroundColor(.black)
-                FavoriteButton(product: product)
+            FavoriteButton(product: product)
         }
     }
     var confirmAlert : Alert{
         Alert(title: Text("注文確認"), message: Text("\(product.name)を\(quantity)個注文しますか"), primaryButton: .default(Text("はい"), action: {
+            showingPopup = true
             
         }), secondaryButton: .cancel(Text("キャンセル")))
     }
     
     //MARK: --method
-    func placeOrder() {
+    func placeOrder(product :  ProductModel, quantity : Int) {
         store.placeOrder(product: product, quantity: quantity)
     }
 }

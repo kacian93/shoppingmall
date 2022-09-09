@@ -9,11 +9,22 @@ import SwiftUI
 
 struct ProductView: View {
     let product : ProductModel
+    @EnvironmentObject var store : Store
+    @State var showingPopup : Bool = false
     
     var body: some View {
-        HStack{
-            productImage
-            descriptionView
+        ZStack{
+            HStack{
+                productImage
+                descriptionView
+            }
+            if showingPopup{
+                PopupView(isPresent: $showingPopup , product: product)
+                    .onTapGesture {
+                        showingPopup = false
+                    }
+            }
+            
         }
     }
     //MARK: -- view分けて変数に
@@ -32,8 +43,12 @@ struct ProductView: View {
             Spacer()
             FavoriteButton(product: product)
             Image(systemName: "cart")
-                .foregroundColor(Color(hue: 1.0, saturation: 0.282, brightness: 0.999))
+                .foregroundColor(Color.heart)
                 .frame(width: 30)
+                .onTapGesture {
+                    showingPopup = true
+                    
+                }
         }
         
     }
@@ -49,6 +64,10 @@ struct ProductView: View {
             footerView
         }.padding()
     }
-
+    //    func orderProduct(){
+    //        quickOrder = product
+    //        store.placeOrder(product: product, quantity: 1)
+    //
+    //    }
 }
 

@@ -19,7 +19,7 @@ struct FavoriteButton : View {
     var body: some View {
             Image(systemName: imageName)
                 .imageScale(.large)
-                .foregroundColor(Color(hue: 1.0, saturation: 0.282, brightness: 0.999))
+                .foregroundColor(.heart)
                 .frame(width: 32, height: 32)
                 .onTapGesture {
                     store.toggleFavorite(self.product)
